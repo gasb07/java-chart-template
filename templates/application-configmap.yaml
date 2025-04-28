@@ -1,0 +1,9 @@
+{{- if .Values.envConfigMap.create -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "application.configMapName" . }}
+  namespace: {{ include "application.namespace" . }}
+data: 
+{{- .Values.envConfigMap.envFile | toYaml | nindent 2 }}
+{{- end -}}
